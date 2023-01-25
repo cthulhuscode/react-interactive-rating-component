@@ -1,0 +1,99 @@
+.card-rate{
+  padding: 32px; 
+
+  &__star-container{
+    width: 100%;        
+  }
+
+  &__star-circle{
+    width: 48px;
+    height: 48px;  
+
+    border-radius: 50%;
+    background: #262E38;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__star{
+    width: 16px;
+    height: 16px; 
+  }
+
+  &__primary-text{
+    margin-top: 30px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  &__secondary-text{
+    margin-top: 7px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    color: #969FAD;
+  }
+
+  &__rating{
+    margin-top: 24px;
+    justify-content: space-evenly;
+  
+    display: flex;
+    gap: 21px;
+
+    .rating__option{
+      width: 51px;
+      height: 51px;
+      border-radius: 50%;
+      background: #262E38;
+      text-align: center;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.2px;
+      color: #7C8798;
+      cursor: pointer;
+
+      &:hover{
+        background: #7C8798;
+        color: white;
+      }
+
+      &--selected{
+        color: white;
+        background: #FC7614;
+      }
+    }
+  }
+
+  &__button{
+    margin-top: 32px;
+    max-width: 341px;
+    height: 45px;
+
+    background: #FC7614;
+    border: none;
+    border-radius: 22.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 2px;
+    color: #FFF;
+    cursor: pointer;
+
+    &:hover{
+      background: #fff;
+      color: #FC7614;
+    }
+  }
+}
