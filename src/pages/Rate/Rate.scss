@@ -50,6 +50,8 @@
       border-radius: 50%;
       background: #262E38;
       text-align: center;
+      outline: none;
+      border: none;
       
       display: flex;
       align-items: center;
@@ -71,6 +73,11 @@
       &--selected{
         color: white;
         background: #FC7614;
+      }
+
+      @media screen and (max-width: 420px){
+        width: 35px;
+        height: 35px;
       }
     }
   }

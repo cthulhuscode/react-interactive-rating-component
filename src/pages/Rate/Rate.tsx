@@ -1,9 +1,25 @@
+import { MouseEvent, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { images } from "../../constants";
 import "./Rate.scss"
 
 export const Rate = () => {
   const navigate = useNavigate();
+  const optionList: any = useRef(null);
+
+  const [options, setOptions] = useState({
+    1: {activeClass: false},
+    2: {activeClass: false},
+    3: {activeClass: false},
+    4: {activeClass: false},
+    5: {activeClass: false},    
+  });
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    let option = e.currentTarget.name!.split("-")[1];
+      
+    setOptions({...options, [option]:{activeClass: true}});
+  }
 
   return (
     <div className="card card-rate">
@@ -21,11 +37,13 @@ export const Rate = () => {
         appreciated
         to help us improve our offering!</p>
       <div className="card-rate__rating">
-        <div className="rating__option rating__option-1">1</div>
-        <div className="rating__option rating__option-2">2</div>
-        <div className="rating__option rating__option-3">3</div>
-        <div className="rating__option rating__option-4">4</div>
-        <div className="rating__option rating__option-5">5</div>
+        {Object.entries(options).map(option => (
+          <button key={option[0]} className={`rating__option ${option[1].activeClass ? 'rating__option--selected' : ''}`} name={`option-${option[0]}`} onClick={handleClick}>{option[0]}</button>
+        ))}
+        {/* <button className="rating__option rating__option-2" name="option-2">2</button>
+        <button className="rating__option rating__option-3" name="option-3">3</button>
+        <button className="rating__option rating__option-4" name="option-4">4</button>
+        <button className="rating__option rating__option-5" name="option-5">5</button> */}
       </div>
       <button className="card-rate__button">Submit</button>
     </div>

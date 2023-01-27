@@ -26,3 +26,18 @@ body{
   display: flex;
   flex-direction: column; 
 }
+
+@media screen and (max-width: 464px){
+  body{
+    padding: 0 24px;
+  }  
+  .card{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 420px){
+  body{
+    padding: 0 10px;
+  }
+}
