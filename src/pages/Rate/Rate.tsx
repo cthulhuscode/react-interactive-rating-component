@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom"
 import { images } from "../../constants";
 import "./Rate.scss"
 
+type OptionsType = {
+  [key: number]:{activeClass: boolean}
+}
+
 export const Rate = () => {
   const navigate = useNavigate();
-  const optionList: any = useRef(null);
+  const optionList: any = useRef();
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
-  const [options, setOptions] = useState({
+  const [options, setOptions] = useState<OptionsType>({
     1: {activeClass: false},
     2: {activeClass: false},
     3: {activeClass: false},
@@ -16,9 +21,17 @@ export const Rate = () => {
   });
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    let option = e.currentTarget.name!.split("-")[1];
-      
-    setOptions({...options, [option]:{activeClass: true}});
+    let clickedOptionId = parseInt(e.currentTarget.name!.split("-")[1]);
+    let changedOptions = {...options}
+
+    if(selectedOption){
+      changedOptions[selectedOption].activeClass = false;
+    }    
+
+    changedOptions[clickedOptionId].activeClass = true;   
+    
+    setSelectedOption(clickedOptionId);
+    setOptions(changedOptions);
   }
 
   return (
@@ -36,14 +49,15 @@ export const Rate = () => {
       <p className="card-rate__secondary-text">Please let us know how we did with your support request. All feedback is
         appreciated
         to help us improve our offering!</p>
-      <div className="card-rate__rating">
+      <div className="card-rate__rating" ref={optionList}>
         {Object.entries(options).map(option => (
-          <button key={option[0]} className={`rating__option ${option[1].activeClass ? 'rating__option--selected' : ''}`} name={`option-${option[0]}`} onClick={handleClick}>{option[0]}</button>
+          <button 
+            key={option[0]} 
+            className={`rating__option ${option[1].activeClass ? 'rating__option--selected' : ''}`} 
+            name={`option-${option[0]}`}
+            onClick={handleClick}>{option[0]}
+          </button>
         ))}
-        {/* <button className="rating__option rating__option-2" name="option-2">2</button>
-        <button className="rating__option rating__option-3" name="option-3">3</button>
-        <button className="rating__option rating__option-4" name="option-4">4</button>
-        <button className="rating__option rating__option-5" name="option-5">5</button> */}
       </div>
       <button className="card-rate__button">Submit</button>
     </div>
