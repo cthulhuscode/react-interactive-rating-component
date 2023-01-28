@@ -34,10 +34,13 @@ export const Rate = () => {
     setOptions(changedOptions);
   }
 
+  const handleSubmit = () => {
+    if(selectedOption)
+      navigate("/thank", {state: {rate: selectedOption}})
+  }
+
   return (
     <div className="card card-rate">
-      {/* <button onClick={() => navigate("/thank", {state: {wasRated: false}})}>Go to Thank</button> */}
-
       <div className="card-rate__star-container">
         <div className="card-rate__star-circle">
           <img className="card-rate__star" src={images.star} alt="star" />
@@ -59,7 +62,7 @@ export const Rate = () => {
           </button>
         ))}
       </div>
-      <button className="card-rate__button">Submit</button>
+      <button className="card-rate__button" onClick={handleSubmit}>Submit</button>
     </div>
   )
 }
